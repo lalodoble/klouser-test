@@ -1,0 +1,56 @@
+/*==================================================================================
+BUTTONS
+==================================================================================*/
+
+.btn {
+	@apply text-base;
+	@apply rounded-md;
+	color: #fff;
+	border: none;
+	text-transform: none;
+	font-weight: bold;
+	padding: .9rem 1.6rem;
+	opacity: 1 !important;
+	@apply transition-all;
+	@apply duration-300;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	outline: none !important;
+	cursor: pointer;
+
+	@apply bg-gray-200;
+	
+	$bg: #A78BF6;
+
+	background: $bg;
+	color: #fff;
+	box-shadow: 0 .5rem 1.5rem rgba($bg, $alpha: .3);
+
+	&:hover {
+		transform: translateY(.2rem);
+		box-shadow: 0 .2rem .5rem rgba($bg, $alpha: .3);
+	}
+}
+
+.btn:focus {
+	box-shadow: inherit;
+}
+
+.btn.btn-lg {
+	padding: 1rem 2rem;
+	font-size: 1rem;
+	height: auto;
+}
+
+.btn.btn-md {
+	padding: .5rem 1.2rem;
+	font-size: .9rem;
+}
+
+.btn.btn-sm {
+	padding: .35rem .7rem;
+	height: auto;
+	font-size: .8rem;
+	border-radius: .45rem;
+}

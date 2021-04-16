@@ -1,0 +1,274 @@
+header {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 5;
+	@apply py-3;
+
+	.logo {
+		display: inline-block;
+		img {
+			height: 2rem;
+		}
+	}
+}
+
+.container, .container-fluid, .container-sm, .container-md {
+	z-index: 2;
+}
+
+.hero {
+	height: clamp(300px, 42vh, 50vh);
+	position: relative;
+	margin-bottom: 7rem;
+	background-color: #eee;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		pointer-events: none;
+		width: 100%;
+		height: 40%;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+		top: 0;
+		left: 0;
+		z-index: 0;
+	}
+
+	h1 {
+		color: #fff;
+		text-align: center;
+
+		span {
+			display: block;
+			text-shadow: 0 0 .5rem rgba($color: black, $alpha: .2);
+		}
+
+		strong {
+			margin-top: .5rem;
+			font-size: clamp(3rem, 10vw, 6rem);
+			display: block;
+			line-height: 1em;
+			text-shadow: 0 0 1rem rgba($color: black, $alpha: .1);
+		}
+	}
+
+	.profilePic {
+		position: absolute;
+		bottom: 0;
+		z-index: 2;
+		left: 50%;
+		transform: translateX(-50%) translateY(50%);
+	}
+}
+
+.profilePic {
+	width: 10rem;
+	height: 10rem;
+	object-fit: cover;
+	overflow: hidden;
+	@apply rounded-full;
+	border: .75rem solid #fff;
+	box-shadow: 0 0 0 1.5rem rgba(#fff, .35);
+	background: #eee;
+}
+
+section {
+	position: relative;
+}
+
+.blurredBg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	filter: blur(4.5rem) brightness(1.3);
+	background-color: #bbb;
+	background-size: cover;
+	background-position: center center;
+}
+
+.card {
+	position: relative;
+	background: rgba(250,250,250, .6);
+	@apply rounded-xl;
+	@apply shadow-xl;
+	display: flex;
+	overflow: hidden;
+
+	.__half {
+		@apply p-6;
+	}
+}
+
+.beneficiosList {
+	max-width: 600px;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
+
+	li {
+		@apply text-base;
+		@apply text-gray-900;
+		@apply pl-6;
+		position: relative;
+	}
+}
+
+.text-shadow-light {
+	text-shadow: 0 0 30px white, 0 0 50px white, 0 0 50px white;
+}
+
+/*=================================================================================================
+FAQ
+=================================================================================================*/
+
+li.faq {
+	display: block;
+
+	button {
+		outline: none;
+	}
+
+	.__title {
+		width: 100%;
+	}
+
+	.__body {
+		overflow: hidden;
+		@apply transition-all;
+
+		/*&.--collapsed {
+			transform: scaleY(0);
+			height: 0;
+		}*/
+	}
+}
+
+/*=================================================================================================
+TIMER
+=================================================================================================*/
+
+.timer {
+	@apply flex;
+	@apply gap-3;
+	@apply justify-center;
+
+	p {
+		margin: .7rem 0 !important;
+	}
+
+	.__time {
+		display: grid;
+		@apply gap-2;
+		grid-auto-flow: column;
+		grid-auto-columns: 1fr;
+
+		li {
+			@apply flex;
+			@apply flex-col;
+
+			.__number {
+				@apply bg-gray-200;
+				@apply text-lg;
+				@apply font-bold;
+				@apply rounded-sm;
+				padding: .7rem 0;
+				min-width: 2.4rem;
+
+				&.--anim {
+					position: relative;
+					overflow: hidden;
+					height: 2.7rem;
+					span {
+						position: absolute;
+						left: 0;
+						width: 100%;
+						text-align: center;
+						&.toEnter {
+							transform: translateY(2rem);
+							opacity: 0;
+							transition: 0 !important;
+						}
+						&.toStayFake {
+							transform: none;
+							opacity: 1;
+							transition: 0 !important;
+						}
+						&.toStay {
+							transform: none;
+							opacity: 1;
+							transition: all .7s ease-out;
+						}
+						&.toPrented {
+							transition: 0 !important;
+						}
+						&.toExit {
+							transition: all .7s ease-out;
+							transform: translateY(-2rem);
+							opacity: 0;
+						}
+					}
+				}
+			}
+
+			.__text {
+				@apply text-xs;
+				@apply text-gray-400;
+			}
+		}
+	}
+}
+
+/*=================================================================================================
+FOOTER
+=================================================================================================*/
+
+footer {
+	a.logo {
+		display: inline-block;
+		width: 12rem;
+	
+		img {
+			width: 100%;
+		}
+	}
+}
+
+/*=================================================================================================
+THEMES
+=================================================================================================*/
+
+
+@mixin button($color) {
+	background: $color;
+	box-shadow: 0 .5rem 1.5rem rgba($color, .3);
+
+	&:hover {
+		transform: translateY(.2rem);
+		box-shadow: 0 .2rem .5rem rgba($color, .3);
+	}
+}
+
+@mixin themeColor($name, $c1, $c2) {
+	.btn-theme-#{$name} { @include button($c1); }
+	.text-theme-#{$name} { color: $c1; }
+	.btn-theme-#{$name}2 { @include button($c2); }
+	.text-theme-#{$name}2 { color: $c2; }
+}
+
+
+@include themeColor('blue', #31A6FF, #A78BF6);
+@include themeColor('yellow', #FFCE50, #c5ad79);
+@include themeColor('brown', #AE9380, #A2BF90);
+@include themeColor('green', #5FD17F, #B6BBC2);
+@include themeColor('orange', #FCA96C, #8EB4EB);
+@include themeColor('red', #FF4768, #B6BBC2);
+
+.btn-theme-wp {
+	@include button(#5FD17F);
+}
